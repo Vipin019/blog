@@ -9,6 +9,7 @@ dotenv.config();
 
 //routes inport
 const userRoute = require("./routes/userRoutes");
+const blogRoute = require("./routes/blogRoutes");
 
 //mongodb connection
 connectDB();
@@ -22,6 +23,7 @@ app.use(morgan("dev")); //by using this it will show all the url that are hit in
 
 //routes
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/blog", blogRoute);
 
 //port
 const PORT = process.env.PORT || 8080;
