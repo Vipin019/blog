@@ -4,7 +4,7 @@ const {
   createBlogController,
   updateBlogController,
   getSingleBlogController,
-  deleteblogController,
+  deleteBlogController,
 } = require("../controllers/blogController");
 
 //router object
@@ -24,6 +24,6 @@ router.put("/update-blog/:id", updateBlogController);
 router.get("/get-blog/:id", getSingleBlogController);
 
 //delete blog
-router.delete("/delete-blog/:id", deleteblogController);
+router.delete("/delete-blog/:id", deleteBlogController);
 
 module.exports = router;
