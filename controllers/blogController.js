@@ -1,4 +1,6 @@
 const blogModel = require("../models/blogModel");
+const userModel = require("../models/userModel");
+const mongoose = require("mongoose");
 
 //Get all blog
 exports.getAllBlogController = async (req, res) => {
@@ -29,19 +31,35 @@ exports.getAllBlogController = async (req, res) => {
 //Create blog
 exports.createBlogController = async (req, res) => {
   try {
-    const { title, description, image } = req.body;
-    if (!title || !description) {
+    const { title, description, image, user } = req.body;
+    if (!title || !description || !user) {
       return res.status(400).send({
         success: false,
-        message: "title and description is required",
+        message: "title, description and user id is required",
       });
     }
+    const existingUser = await userModel.findById(user);
+    // validation
+    if (!existingUser) {
+      return res.status(404).send({
+        success: false,
+        message: "User not found",
+      });
+    }
+
     let newBlog;
     if (!image) {
-      newBlog = new blogModel({ title, description });
+      newBlog = new blogModel({ title, description, user });
     } else {
-      newBlog = new blogModel({ title, description, image });
+      newBlog = new blogModel({ title, description, image, user });
     }
+    const session = await mongoose.startSession(); //start new mongoose session
+    session.startTransaction(); //do transaction
+    await newBlog.save({ session }); //save the newBlog on the basis of session
+    existingUser.blogs.push(newBlog); //push new blog in userModel blos array
+    await existingUser.save({ session }); // save the updated user on the basis of session
+    await session.commitTransaction(); //complet the session
+
     await newBlog.save();
     return res.status(200).send({
       success: true,
