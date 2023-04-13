@@ -135,13 +135,16 @@ exports.getSingleBlogController = async (req, res) => {
 exports.deleteBlogController = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedBlog = await blogModel.findByIdAndDelete(id);
-    if (!deletedBlog) {
+    const blog = await blogModel.findOneAndDelete({ _id: id }).populate("user"); //populate will replace the user fiel of blog by user dedails related to the user of that blog
+    console.log(blog);
+    if (!blog) {
       return res.status(404).send({
-        success: true,
+        success: false,
         message: "Blog not found",
       });
     }
+    await blog.user.blogs.pull(blog);
+    await blog.user.save();
     return res.status(200).send({
       success: true,
       message: "Blog deleted successfully",
