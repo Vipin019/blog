@@ -1,0 +1,19 @@
+.blogs{
+    display: flex;
+    padding-top: 5rem;
+    height: 100vh;
+    justify-content: center;
+    
+}
+#blogs__conatiner{
+    width: 90%;
+    background-color: var(--color-l-bg-variant);
+    display: flex;
+    justify-content: center;
+}
+.blogs__allblog{
+    width: 70%;
+}
+.blogs__topWriters{
+    width: 30%;
+}

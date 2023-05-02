@@ -1,0 +1,13 @@
+.blogCard{
+    background-color: var(--color-l-bg-variant);
+    margin: .5rem;
+    border-radius: .5rem;
+}
+.blogCard__writer{
+    height: 1.5rem;
+    background-color: var(--color-l-bg);
+}
+.blogCard__writer>img{
+    height: 1.5rem;
+    width: 1.5rem;
+}

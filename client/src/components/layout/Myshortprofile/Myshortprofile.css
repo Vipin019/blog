@@ -1,0 +1,31 @@
+.myShortProfile{
+    background-color: var(--color-primary);
+    padding: .5rem;
+    font-size: .7rem;
+    border-radius: .3rem;
+}
+.myShortProfile p{
+    margin: .2rem;
+    padding: .5rem;
+}
+.myShortProfile__myProfile{
+    background-color: var(--color-secondary);
+}
+.myShortProfile__mode{
+    background-color: var(--color-secondary-variant);
+}
+.myShortProfile__mode:hover{
+    cursor: pointer;
+}
+.myShortProfile__setting{
+    background-color: var(--color-secondary);
+}
+.myShortProfile__setting:hover{
+    cursor: pointer;
+}
+.myShortProfile__logout{
+    background-color: var(--color-secondary-variant);
+}
+.myShortProfile__logout:hover{
+    cursor: pointer;
+}
