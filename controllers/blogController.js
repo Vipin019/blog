@@ -136,11 +136,16 @@ exports.deleteBlogController = async (req, res) => {
   try {
     const { id } = req.params;
     const blog = await blogModel.findOneAndDelete({ _id: id }).populate("user"); //populate will replace the user fiel of blog by user dedails related to the user of that blog
-    console.log(blog);
     if (!blog) {
       return res.status(404).send({
         success: false,
         message: "Blog not found",
+      });
+    }
+    if (!blog.user) {
+      return res.status(200).send({
+        success: true,
+        message: "Blog deleted successfully but it was not related to any user",
       });
     }
     await blog.user.blogs.pull(blog);
@@ -155,6 +160,28 @@ exports.deleteBlogController = async (req, res) => {
       success: false,
       message: "Error in deleteblogController",
       error,
+    });
+  }
+};
+
+//get all blog of a user
+exports.userBlogController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const allBlogOfaUser = await userModel
+      .findById({ _id: id })
+      .populate("blogs");
+    const blogs = allBlogOfaUser.blogs;
+    return res.status(200).send({
+      success: true,
+      message: "all blogs of a user",
+      blogs,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error in userBlogController",
     });
   }
 };

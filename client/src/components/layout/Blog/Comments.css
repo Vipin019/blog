@@ -1,0 +1,26 @@
+.comments__writter{
+    background-color: var(--color-l-bg-variant);
+    width: 100%;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+.comments__writter>img{
+    height: 1.4rem;
+    width: 1.4rem;
+    border-radius: 100%;
+}
+.comments__writter>div{
+    margin: .5rem;
+}
+.comments__writter>div>h1{
+    font-size: .5rem;
+}
+.comments__writter>div>small{
+    font-size: .4rem;
+}
+.comments__details>small{
+    padding: .5rem;
+    margin: .5rem;
+    font-size: .5rem;
+}

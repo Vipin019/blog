@@ -1,16 +1,21 @@
 import "./Blogcard.css";
 import defaultAvatar from "../../../images/Profile.png";
-import React from "react";
+import React, { useState } from "react";
 import { AiFillLike, AiFillDislike, AiOutlineComment } from "react-icons/ai";
 import { BiShare } from "react-icons/bi";
+import Comments from "./Comments";
 
 const Blogcard = () => {
+  const [comment, setComment] = useState("");
   return (
     <div className="blogCard">
       <div className="blogCard__writer">
         <img alt="Avatar" src={defaultAvatar} />
-        <h1>Name Kumar</h1>
-        <small>Highest Education</small>
+        <div>
+          <h1>Name Kumar</h1>
+          <small>Highest Education</small>
+        </div>
+
         <small>Follow</small>
       </div>
       <div className="blogCard__post">
@@ -45,6 +50,27 @@ const Blogcard = () => {
         </div>
         <div className="blogCard__conclusion__share">
           <BiShare />
+        </div>
+      </div>
+      <div className="blogCard__comments">
+        <div className="blogCard__comments__allComments">
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+        </div>
+        <div className="blogCard__comments__writeComment">
+          <input
+            className="blogCard__comments__writeComment--text"
+            type="text"
+            value={comment}
+            placeholder="Write your comment here..."
+            onChange={(e) => {
+              setComment(e.target.value);
+            }}
+          />
+          <input className="btn" type="Button" value="Post" />
         </div>
       </div>
     </div>

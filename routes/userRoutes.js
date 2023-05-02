@@ -3,6 +3,7 @@ const {
   getAllUsers,
   registerController,
   loginController,
+  deleteAccountController,
 } = require("../controllers/userController");
 
 //router cbject
@@ -16,5 +17,8 @@ router.post("/register", registerController);
 
 //login ||post
 router.post("/login", loginController);
+
+//delete account
+router.post("/delete-account", deleteAccountController);
 
 module.exports = router;

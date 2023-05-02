@@ -101,3 +101,42 @@ exports.loginController = async (req, res) => {
     });
   }
 };
+
+//update account
+
+//delete account -->Not working
+exports.deleteAccountController = async (req, res) => {
+  try {
+    const { userName, email, password } = req.body;
+    if (!userName || !email || !password) {
+      return res.status(200).send({
+        success: false,
+        message: "All are required",
+      });
+    }
+    const user = await userModel.findOne({ userName, email }).populate("blogs");
+    const isPasswordMatched = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatched) {
+      return res.status(403).send({
+        success: false,
+        message: "Incorrect password",
+      });
+    }
+    await user.blogs.pull({ _id: { $in: user.blogs } });
+    console.log(user.blogs);
+    for (const blog of user.blogs) {
+      await blog.save();
+    }
+    await userModel.findOneAndDelete({ userName, email });
+    return res.status(200).send({
+      success: true,
+      message: "Account deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error in deleteAccountController",
+    });
+  }
+};

@@ -6,6 +6,8 @@ const Allblog = () => {
   return (
     <div className="allBlog">
       <Blogcard />
+      <Blogcard />
+      <Blogcard />
     </div>
   );
 };

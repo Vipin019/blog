@@ -2,7 +2,7 @@ POST http://localhost:8080/api/v1/blog/create-blog
 Content-Type: application/json
 
 {
-    "title":"After a long time",
+    "title":"Your mind",
     "description":"La Belle Dame sans Merci, The Beautiful Lady Without Mercy is a ballad produced by the English poet John Keats in 1819. The title was derived from the title of a 15th-century poem by Alain Chartier called La Belle Dame sans Mercy",
-    "user":"642ad2bcf9dcb83090092337"
+    "user":"6439728880b5e7b7c2243d66"
 }
