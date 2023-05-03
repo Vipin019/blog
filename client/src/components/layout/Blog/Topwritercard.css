@@ -1,0 +1,30 @@
+.topWriterCard{
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-l-bg-variant);
+    margin: .5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 1rem;
+}
+.topWriterCard>img{
+    height: 2rem;
+    width: 2rem;
+    margin: .8rem;
+}
+.topWriterCard>div{
+    margin: .8rem;
+}
+.topWriterCard>div>h1{
+    font-size: .7rem;
+}
+.topWriterCard>div>small{
+    font-size: .5rem;
+}
+.topWriterCard>small{
+    font-size: .7rem;
+    margin: .8rem;
+}

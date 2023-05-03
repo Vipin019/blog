@@ -1,7 +1,7 @@
 import "./Blogs.css";
 import React from "react";
 import Allblog from "./Allblog";
-import Topwritters from "./Topwritters";
+import Topwriters from "./Topwriters";
 
 const Blogs = () => {
   return (
@@ -11,7 +11,7 @@ const Blogs = () => {
           <Allblog />
         </div>
         <div className="blogs__topWriters">
-          <Topwritters />
+          <Topwriters />
         </div>
       </div>
     </div>

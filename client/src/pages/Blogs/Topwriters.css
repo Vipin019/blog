@@ -1,0 +1,21 @@
+.topWritter{
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--color-l-bg);
+}
+.topWritter>h1{
+    text-align: center;
+    background-color: var(--color-l-bg-variant);
+    font-size: 1rem;
+    padding: .5rem;
+}
+.topWritter__topWriterCard{
+    height: 95%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+}

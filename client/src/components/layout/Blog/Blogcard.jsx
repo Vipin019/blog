@@ -7,6 +7,7 @@ import Comments from "./Comments";
 
 const Blogcard = () => {
   const [comment, setComment] = useState("");
+  const [commentClass, setCommentClass] = useState("blogCard__comments--hide");
   return (
     <div className="blogCard">
       <div className="blogCard__writer">
@@ -45,14 +46,23 @@ const Blogcard = () => {
           <small>65</small>
           <AiFillDislike />
         </div>
-        <div className="blogCard__conclusion__comments">
+        <div
+          className="blogCard__conclusion__comments"
+          onClick={() => {
+            setCommentClass(
+              commentClass === "blogCard__comments"
+                ? "blogCard__comments--hide"
+                : "blogCard__comments"
+            );
+          }}
+        >
           <AiOutlineComment />
         </div>
         <div className="blogCard__conclusion__share">
           <BiShare />
         </div>
       </div>
-      <div className="blogCard__comments">
+      <div className={commentClass}>
         <div className="blogCard__comments__allComments">
           <Comments />
           <Comments />

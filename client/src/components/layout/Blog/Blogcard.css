@@ -53,10 +53,14 @@
     margin-right: 2.5rem;
 }
 .blogCard__comments{
+    display: block;
     background-color: var(--color-l-bg);
     width: 30rem;
     height: 10rem;
     margin-left: 7rem;
+}
+.blogCard__comments--hide{
+    display: none;
 }
 .blogCard__comments__allComments{
     width: 100%;

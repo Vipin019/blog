@@ -1,0 +1,16 @@
+.myPost{
+    height: 120vh;
+    width: 100%;
+    background-color: var(--color-l-bg-variant);
+    display: flex;
+    justify-content: center;
+}
+.myPost__container{
+    margin-top: 5rem;
+    width: 70%;
+    height: 100vh;
+    background-color: var(--color-l-bg);
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
