@@ -1,5 +1,6 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const JWT = require("jsonwebtoken");
 
 //get all users
 exports.registerController = async (req, res) => {
@@ -87,10 +88,15 @@ exports.loginController = async (req, res) => {
         message: "Email or password is invalid",
       });
     }
+    //token
+    const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
     return res.status(200).send({
       success: true,
       message: "Login successfully",
       user,
+      token,
     });
   } catch (error) {
     console.log(error);

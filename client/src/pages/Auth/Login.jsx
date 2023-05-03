@@ -1,10 +1,12 @@
 import "./Login.css";
 import React, { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../../context/Auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [auth, setAuth] = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,8 +15,15 @@ const Login = () => {
         email: email,
         password: password,
       });
+      console.log(res);
       if (res && res.data.success) {
         alert("Login Successfully");
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
       } else {
         alert(res.data.message);
       }
