@@ -5,7 +5,7 @@ import defaultProfileImage from "../images/Profile.png";
 import Myshortprofile from "./layout/Myshortprofile/Myshortprofile";
 
 const Header = () => {
-  const [isLogedin, setLogedin] = useState(true);
+  const [isLogedin, setLogedin] = useState(false);
   const [mode, setMode] = useState("LIGHT");
   const [whatClass, setClass] = useState("header__myShortProfile--hide");
   return (
@@ -19,6 +19,11 @@ const Header = () => {
 
       {isLogedin ? (
         <div className="header">
+          <Link to="/">
+            <div className="appName">
+              <h1>Blog App</h1>
+            </div>
+          </Link>
           <Link to="/createPost">
             <div className="header__createPost">
               <input
@@ -63,6 +68,11 @@ const Header = () => {
         </div>
       ) : (
         <div className="header">
+          <Link to="/">
+            <div className="appName">
+              <h1>Blog App</h1>
+            </div>
+          </Link>
           <Link to="/login">
             <div className="header__login">
               <input

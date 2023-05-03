@@ -1,0 +1,13 @@
+.myProfile{
+    height: 120vh;
+    width: 100%;
+    background-color: var(--color-l-bg-variant);
+    display: flex;
+    justify-content: center;
+}
+.myProfile__container{
+    margin-top: 5rem;
+    height: 100%;
+    width: 80%;
+    background-color: var(--color-l-bg);
+}
