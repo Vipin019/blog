@@ -5,8 +5,9 @@ const {
   loginController,
   deleteAccountController,
 } = require("../controllers/userController");
+const { requireSignIn } = require("../middlewares/authMiddlewares");
 
-//router cbject
+//router object
 const router = express.Router();
 
 //get all users || get
@@ -17,6 +18,11 @@ router.post("/register", registerController);
 
 //login ||post
 router.post("/login", loginController);
+
+//protected User route auth
+router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
 
 //delete account
 router.post("/delete-account", deleteAccountController);

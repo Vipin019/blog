@@ -7,7 +7,7 @@ const Myshortprofile = () => {
   return (
     <>
       <div className="myShortProfile">
-        <Link to={"/myProfile"}>
+        <Link to={"/useer/myProfile"}>
           <div className="myShortProfile__myProfile">
             <p>My Profile</p>
           </div>

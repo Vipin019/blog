@@ -1,11 +1,20 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
+const cloudinary = require("../utils/cloudinary");
 
 //get all users
 exports.registerController = async (req, res) => {
+  const { userName, email, password, avatar } = req.body;
   try {
-    const { userName, email, password } = req.body;
+    let cloudResult;
+    if (avatar) {
+      cloudResult = await cloudinary.uploader.upload(avatar, {
+        folder: "blog",
+        // width:300,
+        // crop:"scale"
+      });
+    }
     // checking validation
     if (!userName || !password || !email) {
       return res.status(400).send({
@@ -24,7 +33,20 @@ exports.registerController = async (req, res) => {
     //hashing password
     const hasedPasswors = await bcrypt.hash(password, 10);
     //creating new user
-    const newUser = new userModel({ userName, email, password: hasedPasswors });
+    let newUser;
+    if (avatar) {
+      newUser = new userModel({
+        userName,
+        email,
+        password: hasedPasswors,
+        avatar: {
+          public_id: cloudResult.public_id,
+          url: cloudResult.secure_url,
+        },
+      });
+    } else {
+      newUser = new userModel({ userName, email, password: hasedPasswors });
+    }
     // save new user
     await newUser.save();
     return res.status(201).send({

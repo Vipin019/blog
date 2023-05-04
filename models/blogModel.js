@@ -11,7 +11,12 @@ const blogSchema = new mongoose.Schema(
       require: [true, "You can not submit blank post."],
     },
     image: {
-      type: String,
+      public_id: {
+        type: String,
+      },
+      url: {
+        type: String,
+      },
     },
     user: {
       type: mongoose.Types.ObjectId,

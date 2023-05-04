@@ -5,34 +5,27 @@ import { AiFillLike, AiFillDislike, AiOutlineComment } from "react-icons/ai";
 import { BiShare } from "react-icons/bi";
 import Comments from "./Comments";
 
-const Blogcard = () => {
+const Blogcard = ({ post }) => {
   const [comment, setComment] = useState("");
   const [commentClass, setCommentClass] = useState("blogCard__comments--hide");
   return (
     <div className="blogCard">
       <div className="blogCard__writer">
-        <img alt="Avatar" src={defaultAvatar} />
+        <img
+          alt="Avatar"
+          src={post.user.avatar ? post.user.avatar.public_id : defaultAvatar}
+        />
         <div>
-          <h1>Name Kumar</h1>
+          <h1>{post.user.userName}</h1>
           <small>Highest Education</small>
         </div>
 
         <small>Follow</small>
       </div>
       <div className="blogCard__post">
-        <h1>Title of the blog</h1>
-        <img alt="title" src={defaultAvatar} />
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </p>
+        <h1>{post.title}</h1>
+        <img alt="title" src={post.image ? post.image.url : defaultAvatar} />
+        <p>{post.description}</p>
       </div>
       <div className="blogCard__conclusion">
         <div className="blogCard__conclusion__views">

@@ -11,6 +11,7 @@ import Createpost from "./pages/Createpost/Createpost";
 import Myposts from "./pages/Myposts/Myposts";
 import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
+import PrivateRoute from "./components/Routes/Private";
 
 const App = () => {
   const [mode, setMode] = useState("LIGHT");
@@ -21,9 +22,11 @@ const App = () => {
         <Route path="/" element={<Blogs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/createPost" element={<Createpost />} />
-        <Route path="/myPosts" element={<Myposts />} />
-        <Route path="/myProfile" element={<Myprofile />} />
+        <Route path="/user" element={<PrivateRoute />}>
+          <Route path="createPost" element={<Createpost />} />
+          <Route path="myPosts" element={<Myposts />} />
+          <Route path="myProfile" element={<Myprofile />} />
+        </Route>
       </Routes>
       <Footer />
     </div>

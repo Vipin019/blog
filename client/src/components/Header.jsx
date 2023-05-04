@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import defaultProfileImage from "../images/Profile.png";
 import Myshortprofile from "./layout/Myshortprofile/Myshortprofile";
+import { useAuth } from "../context/Auth";
 
 const Header = () => {
-  const [isLogedin, setLogedin] = useState(false);
+  const [auth, setAuth] = useAuth();
   const [mode, setMode] = useState("LIGHT");
   const [whatClass, setClass] = useState("header__myShortProfile--hide");
   return (
@@ -17,14 +18,14 @@ const Header = () => {
         </div>
       </Link>
 
-      {isLogedin ? (
+      {auth.user ? (
         <div className="header">
           <Link to="/">
             <div className="appName">
               <h1>Blog App</h1>
             </div>
           </Link>
-          <Link to="/createPost">
+          <Link to="/user/createPost">
             <div className="header__createPost">
               <input
                 className={
@@ -37,7 +38,7 @@ const Header = () => {
               />
             </div>
           </Link>
-          <Link to="/myPosts">
+          <Link to="/user/myPosts">
             <div className="header__myPosts">
               <input
                 className={

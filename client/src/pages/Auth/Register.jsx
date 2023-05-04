@@ -6,6 +6,17 @@ const Register = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState();
+
+  function handleOnchange(e) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setAvatar(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,9 +24,10 @@ const Register = () => {
       const res = await axios.post(
         "http://localhost:8080/api/v1/user/register",
         {
-          userName: userName,
-          email: email,
-          password: password,
+          userName,
+          email,
+          password,
+          avatar,
         }
       );
       if (res && res.data.success) {
@@ -41,7 +53,7 @@ const Register = () => {
           }}
         />
         <input
-          type="text"
+          type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => {
@@ -49,13 +61,14 @@ const Register = () => {
           }}
         />
         <input
-          type="text"
+          type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
+        <input type="file" accept="image/" onChange={handleOnchange} />
         <input className="btn btn-l" type="submit" value="Register" />
       </form>
     </div>

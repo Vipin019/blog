@@ -16,6 +16,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "password is required"],
     },
+    avatar: {
+      public_id: {
+        type: String,
+      },
+      url: {
+        type: String,
+      },
+    },
     blogs: [
       {
         type: mongoose.Types.ObjectId,
