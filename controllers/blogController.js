@@ -1,6 +1,7 @@
 const blogModel = require("../models/blogModel");
 const userModel = require("../models/userModel");
 const mongoose = require("mongoose");
+const cloudinary = require("../utils/cloudinary");
 
 //Get all blog
 exports.getAllBlogController = async (req, res) => {
@@ -30,8 +31,14 @@ exports.getAllBlogController = async (req, res) => {
 
 //Create blog
 exports.createBlogController = async (req, res) => {
+  const { title, description, image, user } = req.body;
   try {
-    const { title, description, image, user } = req.body;
+    let cloudResult;
+    if (image) {
+      cloudResult = await cloudinary.uploader.upload(image, {
+        floder: "blog",
+      });
+    }
     if (!title || !description || !user) {
       return res.status(400).send({
         success: false,
@@ -51,7 +58,15 @@ exports.createBlogController = async (req, res) => {
     if (!image) {
       newBlog = new blogModel({ title, description, user });
     } else {
-      newBlog = new blogModel({ title, description, image, user });
+      newBlog = new blogModel({
+        title,
+        description,
+        image: {
+          public_id: cloudResult.public_id,
+          url: cloudResult.secure_url,
+        },
+        user,
+      });
     }
     const session = await mongoose.startSession(); //start new mongoose session
     session.startTransaction(); //do transaction

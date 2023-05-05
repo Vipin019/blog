@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 const cloudinary = require("../utils/cloudinary");
 
-//get all users
+//register
 exports.registerController = async (req, res) => {
   const { userName, email, password, avatar } = req.body;
   try {
