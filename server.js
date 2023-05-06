@@ -3,6 +3,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const bodyParser = require("body-parser");
+const fileUpload = require("express-fileupload");
 
 //env config
 dotenv.config();
@@ -17,6 +19,8 @@ connectDB();
 const app = express();
 
 //middelwares
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
 app.use(cors());
 app.use(express.json()); //by using this we can receve JSON data from frontend
 app.use(morgan("dev")); //by using this it will show all the url that are hit in console

@@ -9,27 +9,32 @@ const Createpost = () => {
   const [image, setImage] = useState();
   const [auth, setAuth] = useAuth();
 
+  // function handleOnchange(e) {
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     if (reader.readyState === 2) {
+  //       setImage(reader.result);
+  //     }
+  //   };
+  //   reader.readAsDataURL(e.target.files[0]);
+  // }
   function handleOnchange(e) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setImage(reader.result);
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
+    const selectedImage = e.target.files[0];
+    setImage(selectedImage);
   }
+
   const handleSubmit = async (e) => {
     const user = auth.user._id;
     e.preventDefault();
     try {
+      const blogData = new FormData();
+      blogData.append("title", title);
+      blogData.append("description", description);
+      blogData.append("image", image);
+      blogData.append("user", user);
       const res = await axios.post(
         "http://localhost:8080/api/v1/blog/create-blog",
-        {
-          title,
-          description,
-          image,
-          user,
-        }
+        blogData
       );
       if (res && res.data.success) {
         alert("Registred Successfully");

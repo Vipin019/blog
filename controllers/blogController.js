@@ -2,6 +2,7 @@ const blogModel = require("../models/blogModel");
 const userModel = require("../models/userModel");
 const mongoose = require("mongoose");
 const cloudinary = require("../utils/cloudinary");
+const getDataUri = require("../utils/fileDataUri");
 
 //Get all blog
 exports.getAllBlogController = async (req, res) => {
@@ -31,11 +32,13 @@ exports.getAllBlogController = async (req, res) => {
 
 //Create blog
 exports.createBlogController = async (req, res) => {
-  const { title, description, image, user } = req.body;
+  const { title, description, user } = req.fields;
+  const { image } = req.files;
   try {
     let cloudResult;
     if (image) {
-      cloudResult = await cloudinary.uploader.upload(image, {
+      const fileUri = getDataUri(image);
+      cloudResult = await cloudinary.uploader.upload(fileUri.content, {
         floder: "blog",
       });
     }

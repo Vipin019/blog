@@ -7,6 +7,7 @@ const {
   deleteBlogController,
   userBlogController,
 } = require("../controllers/blogController");
+const multerMiddleware = require("../middlewares/multer");
 
 //router object
 const router = express.Router();
@@ -16,7 +17,7 @@ const router = express.Router();
 router.get("/all-blog", getAllBlogController);
 
 //create blog
-router.post("/create-blog", createBlogController);
+router.post("/create-blog", multerMiddleware, createBlogController);
 
 //update blog
 router.put("/update-blog/:id", updateBlogController);
