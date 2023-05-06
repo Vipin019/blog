@@ -9,7 +9,7 @@ const Allblog = () => {
   const getAllPost = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8080/api/v1/blog/all-blog"
+        "https://fantastic-fawn-gabardine.cyclic.app/api/v1/blog/all-blog"
       );
       if (data?.success) {
         setPosts(data?.blogs);
