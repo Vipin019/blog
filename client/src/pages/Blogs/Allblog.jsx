@@ -6,6 +6,7 @@ import axios from "axios";
 const Allblog = () => {
   const [posts, setPosts] = useState();
   const [user, setUser] = useState();
+
   const getAllPost = async () => {
     try {
       const { data } = await axios.get(

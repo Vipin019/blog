@@ -4,6 +4,7 @@
     top: 1.5rem;
     color: var(--color-primary);
     font-size: 1.5rem;
+    font-family: 'Sigmar', cursive;
 }
 .appName>h1:hover{
     cursor: pointer;

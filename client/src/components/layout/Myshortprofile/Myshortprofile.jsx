@@ -1,9 +1,15 @@
 import "./Myshortprofile.css";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../../context/Auth";
 
 const Myshortprofile = () => {
   const [mode, setMode] = useState("LIGHT");
+  const [auth, setAuth] = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <>
       <div className="myShortProfile">
@@ -24,7 +30,19 @@ const Myshortprofile = () => {
           <p>Settings</p>
         </div>
         <div className="myShortProfile__logout">
-          <p>Logout</p>
+          <p
+            onClick={() => {
+              localStorage.removeItem("auth");
+              alert("Logout Successfully");
+              setAuth({
+                user: null,
+                token: "",
+              });
+              navigate(location.state || "/");
+            }}
+          >
+            Logout
+          </p>
         </div>
       </div>
     </>

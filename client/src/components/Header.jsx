@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import defaultProfileImage from "../images/Profile.png";
 import Myshortprofile from "./layout/Myshortprofile/Myshortprofile";
 import { useAuth } from "../context/Auth";
+import { useShortProfile } from "../context/shortProfileContext";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [mode, setMode] = useState("LIGHT");
-  const [whatClass, setClass] = useState("header__myShortProfile--hide");
+  const [shortProfile, setShortProfile] = useShortProfile();
+
   return (
     <>
       <div className="background"></div>
@@ -57,8 +59,8 @@ const Header = () => {
                 alt="Avatar"
                 src={defaultProfileImage}
                 onClick={() => {
-                  setClass(
-                    whatClass === "header__myShortProfile"
+                  setShortProfile(
+                    shortProfile === "header__myShortProfile"
                       ? "header__myShortProfile--hide"
                       : "header__myShortProfile"
                   );
@@ -102,9 +104,16 @@ const Header = () => {
           </Link>
         </div>
       )}
-      <div className={whatClass}>
-        <Myshortprofile />
-      </div>
+      {auth?.user && (
+        <div
+          className={shortProfile}
+          onClick={() => {
+            setShortProfile("header__myShortProfile--hide");
+          }}
+        >
+          <Myshortprofile />
+        </div>
+      )}
     </>
   );
 };
