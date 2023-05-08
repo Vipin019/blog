@@ -26,7 +26,9 @@ const Allblog = () => {
   return (
     <div className="allBlog">
       {posts?.map((post) => (
-        <Blogcard post={post} />
+        <div className="allBlog__container">
+          <Blogcard post={post} />
+        </div>
       ))}
     </div>
   );

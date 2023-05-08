@@ -8,6 +8,7 @@ import Comments from "./Comments";
 const Blogcard = ({ post }) => {
   const [comment, setComment] = useState("");
   const [commentClass, setCommentClass] = useState("blogCard__comments--hide");
+  const [follow, setFollow] = useState("Follow");
   return (
     <div className="blogCard">
       <div className="blogCard__writer">
@@ -16,11 +17,17 @@ const Blogcard = ({ post }) => {
           src={post.user.avatar ? post.user.avatar.public_id : defaultAvatar}
         />
         <div>
-          <h1>{post.user.userName}</h1>
+          <p>{post.user.userName}</p>
           <small>Highest Education</small>
         </div>
 
-        <small>Follow</small>
+        <small
+          onClick={() => {
+            setFollow(follow === "Follow" ? "Following" : "Follow");
+          }}
+        >
+          {follow}
+        </small>
       </div>
       <div className="blogCard__post">
         <h1>{post.title}</h1>

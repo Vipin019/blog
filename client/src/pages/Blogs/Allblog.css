@@ -1,6 +1,9 @@
 .allBlog{
     height: 100%;
     width: 100%;
-    background-color: var(--color-secondary);
-    overflow: scroll;
+    /* background-color: var(--color-primary); */
+    /* overflow: scroll; */
 }
+/* .allBlog__container{
+    height: 100%;
+} */

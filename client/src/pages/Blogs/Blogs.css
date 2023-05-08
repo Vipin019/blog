@@ -1,21 +1,24 @@
 .blogs{
     display: flex;
     padding-top: 5rem;
-    height: 120vh;
+    height: auto;
     width: 100%;
     justify-content: center;
+    
     
 }
 #blogs__conatiner{
     width: 90%;
-    height: 100%;
-    background-color: var(--color-l-bg-variant);
+    height: auto;
+    background-color: var(--color-l-bg);
     display: flex;
     justify-content: center;
 }
 .blogs__allblog{
     width: 70%;
-    height: 100%;
+    height: 120vh;
+    background-color: var(--color-primary);
+    overflow: scroll;
 }
 .blogs__topWriters{
     width: 30%;
