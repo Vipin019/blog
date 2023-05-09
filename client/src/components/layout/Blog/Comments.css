@@ -15,9 +15,19 @@
 }
 .comments__writter>div>h1{
     font-size: .5rem;
+    padding: .1rem;
 }
 .comments__writter>div>small{
     font-size: .4rem;
+    position: relative;
+    top: 0;
+    display: block;
+    padding: .05rem;
+}
+.comments__writter>p{
+    font-size: .6rem;
+    margin-left: 50%;
+    color: blue;
 }
 .comments__details>small{
     padding: .5rem;

@@ -11,6 +11,7 @@ const Comments = () => {
           <h1>Writer Name</h1>
           <small>Heighest Education</small>
         </div>
+        <p>Follow</p>
       </div>
       <div className="comments__details">
         <small>This is comment written udhu weuiafua arfafa af afa f</small>

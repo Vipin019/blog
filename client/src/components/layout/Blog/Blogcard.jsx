@@ -31,8 +31,8 @@ const Blogcard = ({ post }) => {
       </div>
       <div className="blogCard__post">
         <h1>{post.title}</h1>
-        <img alt="title" src={post.image ? post.image.url : defaultAvatar} />
         <p>{post.description}</p>
+        <img alt="title" src={post.image ? post.image.url : defaultAvatar} />
       </div>
       <div className="blogCard__conclusion">
         <div className="blogCard__conclusion__views">
@@ -64,10 +64,6 @@ const Blogcard = ({ post }) => {
       </div>
       <div className={commentClass}>
         <div className="blogCard__comments__allComments">
-          <Comments />
-          <Comments />
-          <Comments />
-          <Comments />
           <Comments />
         </div>
         <div className="blogCard__comments__writeComment">
