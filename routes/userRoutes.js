@@ -1,4 +1,5 @@
 const express = require("express");
+const formidableMiddleware = require("express-formidable");
 const {
   getAllUsers,
   registerController,
@@ -14,7 +15,7 @@ const router = express.Router();
 router.get("/all-users", getAllUsers);
 
 //creat user || post
-router.post("/register", registerController);
+router.post("/register", formidableMiddleware(), registerController);
 
 //login ||post
 router.post("/login", loginController);
